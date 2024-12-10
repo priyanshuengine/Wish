@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-image: url('assets/poster.png');
+      background-size: cover;
+      background-position: center;
+      font-family: 'Ubuntu', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      width: 90%;
+      max-width: 1200px;
+    }
+
+    .notebook {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      height: 400px;
+      background-color: #f4e2c4;
+      background-image: url('images/old-paper-texture.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border: 2px solid black;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      overflow-y: auto;
+      text-align: left;
+    }
+
+    .notebook h1 {
+      font-size: 2.5rem;
+      color: #6e2a5c;
+      margin-bottom: 20px;
+    }
+
+    .notebook-text {
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .cake {
+      width: 200px;
+      height: auto;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .cake:hover {
+      transform: scale(1.1) rotate(10deg);
+    }
+
+    /* Balloon Animation */
+    .balloon {
+      position: absolute;
+      bottom: 10px;
+      width: 80px;
+      height: 120px;
+      animation: float 10s infinite ease-in-out;
+    }
+
+    .balloon img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0);
+      }
+
+      50% {
+        transform: translateY(-200px) rotate(15deg);
+      }
+
+      100% {
+        transform: translateY(0) rotate(-15deg);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .cake {
+        width: 150px;
+        height: auto;
+      }
+
+      .notebook {
+        width: 90%;
+        height: auto;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .container {
+        flex-direction: row;  /* Ensuring cakes stay in the same row */
+        justify-content: space-between;
+      }
+
+      .cake {
+        width: 120px;  /* Adjusting the cake width for smaller screens */
+      }
+
+      .notebook {
+        width: 100%;
+        padding: 1rem;
+      }
+
+      .notebook h1 {
+        font-size: 1.5rem;
+      }
+
+      .notebook-text {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Left Cake -->
+    <img src="assets/cakenew.png" alt="Left Cake" class="cake">
+
+    <!-- Notebook -->
+    <div class="notebook">
+      <h1>Happy Birthday! Aditi 🎉🎂</h1>
+      <div id="notebookText" class="notebook-text"></div>
+    </div>
+
+    <!-- Right Cake -->
+    <img src="assets/cakenew1.png" alt="Right Cake" class="cake">
+  </div>
+
+  <!-- Balloon Animation -->
+  <div id="balloon-container">
+    <div class="balloon" style="left: 20%;">
+      <img src="assets/new1.png" alt="Balloon 1">
+    </div>
+    <div class="balloon" style="left: 80%;">
+      <img src="assets/new2.png" alt="Balloon 2">
+    </div>
+  </div>
+
+  <script>
+   
+  const notebookText = document.getElementById("notebookText");
+  const messages = [
+    "Wishing you a wonderful year ahead filled with joy, love, and laughter.",
+    "May all your dreams come true and your heart always be filled with happiness.",
+    "Here's to another amazing year of memories, growth, and new beginnings!",
+    "Happy Birthday!"
+  ];
+
+  let messageIndex = 0;
+  let charIndex = 0;
+
+  function typeMessage() {
+    if (messageIndex < messages.length) {
+      if (charIndex < messages[messageIndex].length) {
+        notebookText.innerHTML += messages[messageIndex][charIndex];
+        charIndex++;
+        setTimeout(typeMessage, 100);
+      } else {
+        notebookText.innerHTML += "<br><br>";
+        charIndex = 0;
+        messageIndex++;
+        setTimeout(typeMessage, 500);
+      }
+    } else {
+      // After all messages are typed, wait for a moment and redirect
+      setTimeout(() => {
+        window.location.href = "proposal.html"; // Replace with the actual path to proposal.html
+      }, 2000);
+    }
+  }
+
+  typeMessage();
+
+  // Scroll Down Action
+  document.getElementById('scrollTag').addEventListener('click', function () {
+    window.scrollTo({
+      top: window.innerHeight,
+      behavior: 'smooth'
+    });
+  });
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proposal Page</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-image: url('assets/Webpage.png'); /* Replace with your local background image */
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .dialog-container {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    .dialog-container h1 {
+      font-size: 2rem;
+      color: #6e2a5c;
+      margin-bottom: 1.5rem;
+    }
+
+    .dialog-container .buttons {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 1.5rem;
+    }
+
+    .dialog-container button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    button#yes {
+      background-color: #6e2a5c;
+      color: #fff;
+    }
+
+    button#yes:hover {
+      background-color: #582148;
+    }
+
+    button#no {
+      background-color: #f44336;
+      color: #fff;
+      position: relative;
+    }
+
+    button#no:hover {
+      background-color: #d32f2f;
+      animation: moveButton 0.6s infinite;
+    }
+
+    @keyframes moveButton {
+      0% {
+        transform: translateX(0);
+      }
+      25% {
+        transform: translateX(30px);
+      }
+      50% {
+        transform: translateX(0);
+      }
+      75% {
+        transform: translateX(-30px);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    @media (max-width: 576px) {
+      .dialog-container h1 {
+        font-size: 1.5rem;
+      }
+
+      .dialog-container button {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="dialog-container">
+    <h1>Would you be mine? 💕</h1>
+    <div class="buttons">
+      <button id="yes" onclick="onYesClick()">Yes</button>
+      <button id="no">No</button>
+    </div>
+  </div>
+
+  <script>
+    function onYesClick() {
+        window.location.href = "love.html";
+    }
+
+    // Optional: Add a playful effect to the "No" button when hovered.
+    document.getElementById('no').addEventListener('mouseover', () => {
+      const button = document.getElementById('no');
+      const randomX = Math.random() * (window.innerWidth - button.offsetWidth);
+      const randomY = Math.random() * (window.innerHeight - button.offsetHeight);
+      button.style.position = 'absolute';
+      button.style.left = `${randomX}px`;
+      button.style.top = `${randomY}px`;
+    });
+  </script>
+</body>
+
+</html>
